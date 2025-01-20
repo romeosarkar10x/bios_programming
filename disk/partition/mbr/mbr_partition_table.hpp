@@ -1,10 +1,11 @@
 #ifndef MBR_PARTITION_TABLE_HPP
 #define MBR_PARTITION_TABLE_HPP
 
-#include "buffer.hpp"
-#include "buffer_view.hpp"
+#include "buffer/buffer.hpp"
+#include "buffer/buffer_view.hpp"
 #include "globals.hpp"
-#include "partition_table.hpp"
+
+//#include "partition_table.hpp"
 #include "mbr_partition_table_entry.hpp"
 
 namespace bios_programming
@@ -45,7 +46,7 @@ namespace bios_programming
             return m_buffer;
         }
 
-        struct buffer_view bootstrap_code_area()
+        buffer_view bootstrap_code_area()
         {
             return { m_buffer.pointer(), 446u };
         }

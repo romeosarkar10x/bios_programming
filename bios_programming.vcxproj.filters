@@ -15,25 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="byte.hpp">
+    <ClCompile Include="buffer\byte.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mbr_partition_table.hpp">
+    <ClCompile Include="disk\partition\mbr\mbr_partition_table.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mbr_partition_table_entry.hpp">
+    <ClCompile Include="disk\partition\mbr\mbr_partition_table_entry.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cylinder_head_sector.hpp">
+    <ClCompile Include="disk\partition\mbr\cylinder_head_sector.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ntfs_partition_header.hpp">
+    <ClCompile Include="disk\partition\ntfs\ntfs_partition_header.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="buffer_view.hpp">
+    <ClCompile Include="buffer\buffer_view.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -46,22 +46,22 @@
     <ClInclude Include="types.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="buffer.hpp">
+    <ClInclude Include="buffer\buffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="physical_drive.hpp">
+    <ClInclude Include="disk\disk.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="globals.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="partition_table.hpp">
+    <ClInclude Include="disk\partition_table.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="file.hpp">
+    <ClInclude Include="file\file_read.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fat32_partition_header.hpp">
+    <ClInclude Include="disk\partition\fat\fat32\fat32_partition_header.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="exceptions.hpp">
@@ -70,5 +70,11 @@
     <ClInclude Include="utilities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="disk\disk_handle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="disk\partition.hpp" />
   </ItemGroup>
 </Project>

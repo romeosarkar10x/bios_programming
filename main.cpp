@@ -4,8 +4,9 @@
 #include <Windows.h>
 
 #include "buffer.hpp"
+#include "buffer_view.hpp"
 #include "physical_drive.hpp"
-#include "file.hpp"
+#include "file_read.hpp"
 #include "fat32_partition_header.hpp"
 #include "utilities.hpp"
 
@@ -30,23 +31,17 @@ static void fn_terminate_handler()
 
 int main()
 {
+    std::set_terminate(fn_terminate_handler);
+
     using namespace bios_programming;
 
-    std::set_terminate(fn_terminate_handler);
     physical_drive dr("\\\\.\\PhysicalDrive2");
-
     std::cout << dr << std::endl;
 
     dr.initialize(physical_drive::enum_partition_table_scheme::MBR);
 
-    file mbr_bootstrap_binary("mbr_bootstrap_code.bin", bios_programming::file::enum_open_mode::READ);
-
+    file_read mbr_bootstrap_binary("mbr_bootstrap_code.bin");
     copy(dr.partition_table().bootstrap_code_area(), mbr_bootstrap_binary);
-    ////bios_programming::copy(
-    //dr.partition_table().bootstrap_code_area();
 
-    //
-
-    //dr.flush();
-
+    dr.flush();
 }

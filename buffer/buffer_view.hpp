@@ -10,14 +10,7 @@ namespace bios_programming
 {
     struct buffer_view
     {
-        template <typename T, typename = std::enable_if_t<std::is_same_v<T, byte*>>>
-        buffer_view(T pointer, u64 size) :
-            m_pointer(pointer), m_size(size)
-        {}
-
-        // Constructor enabled for const pointers
-        template <typename T, typename = std::enable_if_t<std::is_same_v<T, const byte*>>>
-        buffer_view(T pointer, u64 size) :
+        buffer_view(const byte* pointer, u64 size) noexcept :
             m_pointer(const_cast<byte*>(pointer)), m_size(size)
         {}
 
@@ -46,6 +39,16 @@ namespace bios_programming
         const byte* end() const noexcept
         {
             return m_pointer + m_size;
+        }
+
+        byte& operator[](u64 n)
+        {
+            if(n >= m_size)
+            {
+                throw std::out_of_range("buffer_view's size is less than index n");
+            }
+
+            return *(m_pointer + n);
         }
 
         friend void copy(buffer_view& dest, const buffer_view& src)

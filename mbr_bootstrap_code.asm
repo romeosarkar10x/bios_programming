@@ -9,26 +9,28 @@ fn_entry:
 	mov si, str
 	call print_str
 
-	jmp $
+	hlt
 
 ; prints the character in al
 print_char:
-	pusha
 	mov ah, 0x0e
+	mov bh, 0x00
 	int 0x10
-	popa
 	ret
 
 ; prints a null terminated string [ds:si]
 print_str:
-	print_str_loop:
+	l1:
 		lodsb
 		
 		cmp al, 0
-		jz ret_print_str
+		jz l2
 
 		call print_char
-ret_print_str:
+		jmp l1
+
+	l2:
+
 	ret
 
 

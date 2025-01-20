@@ -69,6 +69,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -144,13 +150,13 @@
     </NASM>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="buffer_view.hpp" />
-    <ClCompile Include="byte.hpp" />
-    <ClCompile Include="cylinder_head_sector.hpp" />
+    <ClCompile Include="buffer\buffer_view.hpp" />
+    <ClCompile Include="buffer\byte.hpp" />
+    <ClCompile Include="disk\partition\mbr\cylinder_head_sector.hpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mbr_partition_table.hpp" />
-    <ClCompile Include="mbr_partition_table_entry.hpp" />
-    <ClCompile Include="ntfs_partition_header.hpp" />
+    <ClCompile Include="disk\partition\mbr\mbr_partition_table.hpp" />
+    <ClCompile Include="disk\partition\mbr\mbr_partition_table_entry.hpp" />
+    <ClCompile Include="disk\partition\ntfs\ntfs_partition_header.hpp" />
   </ItemGroup>
   <ItemGroup>
     <NASM Include="mbr_bootstrap_code.asm">
@@ -158,15 +164,19 @@
     </NASM>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="buffer.hpp" />
+    <ClInclude Include="buffer\buffer.hpp" />
+    <ClInclude Include="disk\disk_handle.hpp" />
     <ClInclude Include="exceptions.hpp" />
-    <ClInclude Include="fat32_partition_header.hpp" />
-    <ClInclude Include="file.hpp" />
+    <ClInclude Include="disk\partition\fat\fat32\fat32_partition_header.hpp" />
+    <ClInclude Include="file\file_read.hpp" />
     <ClInclude Include="globals.hpp" />
-    <ClInclude Include="partition_table.hpp" />
-    <ClInclude Include="physical_drive.hpp" />
+    <ClInclude Include="disk\partition_table.hpp" />
+    <ClInclude Include="disk\disk.hpp" />
     <ClInclude Include="types.hpp" />
     <ClInclude Include="utilities.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="disk\partition.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

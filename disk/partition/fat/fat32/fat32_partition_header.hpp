@@ -2,7 +2,7 @@
 #define FAT32_PARTITION_HEADER_HPP
 
 #include "types.hpp"
-#include "buffer.hpp"
+#include "buffer/buffer.hpp"
 
 namespace bios_programming
 {

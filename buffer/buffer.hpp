@@ -57,7 +57,7 @@ namespace bios_programming
             return m_pointer;
         }
 
-        u32 size() const noexcept
+        u64 size() const noexcept
         {
             return m_size;
         }
@@ -92,8 +92,13 @@ namespace bios_programming
             return m_pointer + m_size;
         }
 
-        byte& operator[](u32 n)
+        byte& operator[](u64 n)
         {
+            if(n >= m_size)
+            {
+                throw std::out_of_range("buffer size is smaller than n");
+            }
+
             return m_pointer[n];
         }
 
